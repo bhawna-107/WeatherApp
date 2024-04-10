@@ -2,9 +2,9 @@ import { useState } from 'react'
 import Form from './Components/form';
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { useDispatch } from 'react-redux';
 
+function App() {
   return (
    <div>
        <Form />
