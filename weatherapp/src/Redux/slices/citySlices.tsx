@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface City {
   name: string;
   temperature: number;
+  iconUrl: string;
 }
 
 interface CityState {

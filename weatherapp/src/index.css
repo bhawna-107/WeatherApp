@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.bg-image {
+    background-image: url('./assets/weatherbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+
+}
