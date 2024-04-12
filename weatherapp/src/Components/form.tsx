@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCity, removeCity } from '../Redux/slices/citySlices';
-import wind from '../assets/wind.png';
-import  humidity from '../assets/humidity.png';
 import DashboardComponent from './dashboardComponent';
+import frontbg from  '../assets/frontimg.jpg';
 
 function Form() {
 
   const currentDate: Date = new Date();
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>('Delhi');
   const [weatherData, setWeatherData] = useState<any>(null);
   const [error, setError] = useState<string>('');
 
@@ -29,6 +28,8 @@ function Form() {
     hour12: true,
   })
 
+  useEffect(() => {
+    
   const fetchWeatherData = async () => {
     try {
       const { data } = await axios.get(
@@ -46,12 +47,14 @@ function Form() {
       setError('City not found');
     }
   };
+  fetchWeatherData();
+
+  }, [query]);
 
   const handleAddCity = () => {
     if(query)
     // Dispatch action to add the city to Redux state
   { 
-    fetchWeatherData();
     dispatch(addCity({ name: query, temperature: weatherData.main.temp, iconUrl : `https://openweathermap.org/img/wn/${weatherData.weather[0]?.icon}.png` }));
   }
   };
@@ -63,8 +66,9 @@ function Form() {
   };
 
   return (
-    <div className='w-full flex flex-col justify-center items-center  bg-image h-screen'>
-    <div className='flex flex-row gap-5 justify-center items-center w-[100%] mx-10'>
+    <div>
+  <div className='w-full flex flex-col bg-gradient-to-r from-gray-100 to-gray-100 p-5 h-screen'>
+    <div className='flex flex-row gap-5 justify-end w-[100%]'>
       <input
         type="text"
         placeholder="Enter city name"
@@ -72,72 +76,42 @@ function Form() {
         onChange={(e) => setQuery(e.target.value)}
         className='w-[30%] p-2 rounded-xl border border-gray-900 h-30px'
       />
-      <button className="bg-blue-500 rounded-full py-2 px-3" onClick={fetchWeatherData}>search</button>
+      <button className="bg-blue-500 rounded-full py-2 px-3">search</button>
       <button className="bg-red-500 rounded-full py-2 px-3" onClick={handleAddCity}>Add to Dashboard</button>
-      </div>
-
-      <div className='flex w-full  '>
-
-      <div className='flex flex-wrap m-20 px-2 py-2 w-[30%] h-[70%] text-white rounded-xl border border-gray-300 h-[40%] bg-gradient-to-r from-blue-400 to-blue-400'>
-      {weatherData && (
-        <div className='flex flex-col w-full'>
-          <div className=' flex  flex-col my-4  px-2 text-xl font-bold w-full  '>
-            <div className='flex justify-between w-full'>
-              <p>{weatherData.name}</p>
-              <p>{formattedTime}</p>
-            
-             
-             </div>
-           
-            <div>{formattedDate}</div>
-           </div>
-          <div className='flex my-2  w-[90%] '> 
-            <div className='flex w-full h-[100%]'>
-              <img
-                src={`https://openweathermap.org/img/wn/${weatherData.weather[0]?.icon}.png`}
-                alt="Weather Icon"
-              />
-              </div>
-            <div className='flex flex-col my-5 text-white'>
-              <div className='flex'>
-              <div className='text-7xl'>{weatherData.main.temp}</div>
-              <span className='text-xl font-bold'>°C</span>
-              </div>
-              <div className='text-xl font-bold pt-3'> {weatherData?.weather[0]?.description}</div>
-              <p className='text-xl '> Feels like {weatherData?.main?.feels_like}</p>
-          </div>
-        </div>
-
-        <div className='flex m-5 p-2 justify-center items-center'>
-          <div className='p-2 w-[30%] '>
-            <p>Humidity</p>
-            {/* <img className=" w-[50%] h-[60%] " src={humidity} alt="windimg" /> */}
-          <p>{weatherData?.main?.humidity}%</p>
-          </div>
-          <div className='p-2 w-[30%] '>
-            <p>Pressure</p>
-            {/* <img className=" w-[50%] h-[60%] " src={humidity} alt="windimg" /> */}
-          <p>{weatherData?.main?.pressure}</p>
-          </div>
-          <div className='p-2 w-[30%]'>
-          <p>Wind speed</p>
-            {/* <img className=" w-[50%] h-[60%] " src={wind} alt="windimg" /> */}
-          <p>{weatherData?.wind?.speed} Km/hr</p>
-          </div>
-          </div>
-        </div>
-
-
-      )}
-      {error && <div className='flex  m-12 justify-center items-center text-xl font-bold'>{error}</div>}
-      </div>
-      {/* </div> */}
-
-      <DashboardComponent />
-
-</div>
     </div>
-  
+    <div className='my-4 relative '>
+  {weatherData && (
+    <div className='flex flex-col w-full absolute top-10  px-8 z-10 text-white'>
+      <div className=' flex flex-col text-xl font-bold w-full'>
+        <div className='flex justify-between w-full'>
+          <p>{weatherData.name}</p>
+          <p>{formattedTime}</p>
+        </div>
+        <div>{formattedDate}</div>
+      </div>
+      <div className='flex w-[90%] justify-between '>
+        <div className='flex w-full h-[100%]'>
+          <img
+            src={`https://openweathermap.org/img/wn/${weatherData.weather[0]?.icon}.png`}
+            alt="Weather Icon"
+            className='w-[15%] h-[50%] '
+          />
+        </div>
+        <div className='flex flex-col text-white'>
+          <div className='flex'>
+            <div className='text-7xl'>{weatherData.main.temp}</div>
+            <span className='text-xl font-bold'>°C</span>
+          </div>
+          <div className='text-xl font-bold pt-3'>{weatherData?.weather[0]?.description}</div>
+          <p className='text-xl'>Feels like {weatherData?.main?.feels_like}</p>
+        </div>
+      </div>
+    </div>
+  )}
+  <img className='w-full h-[28%] rounded-xl relative z-0' src={frontbg} alt="frontbg" />
+</div>
+  </div>
+</div>
   );
 }
 

@@ -47,9 +47,32 @@ function Form() {
     dispatch(removeCity(cityName));
   };
 
+  // useEffect(() => {
+  //   // Define a list of initial city names
+  //   const initialCityNames = ["City1", "City2", "City3", "City4", "City5"];
+
+  //   // Fetch weather data for each initial city
+  //   initialCityNames.forEach(async (cityName) => {
+  //     try {
+  //       const response = await fetchWeatherData(query); // Fetch weather data (replace with your API call)
+  //       // const weatherData = parseWeatherData(response); // Parse weather data as needed
+
+  //       // Dispatch action to add the city with weather data to Redux state
+  //       dispatch(addCity({
+  //         name: cityName,
+  //         temperature: weatherData.temperature,
+  //         iconUrl: weatherData.iconUrl
+  //       }));
+  //     } catch (error) {
+  //       console.error(`Error fetching weather data for ${cityName}:`, error);
+  //       // Handle error if needed
+  //     }
+  //   });
+  // }, [dispatch]);
+
   return (
     
-<div className='flex flex-col text-white m-10 w-[25%]  border border-gray-800 bg-gradient-to-r from-blue-400 to-blue-400 '>
+<div className='flex flex-col text-white m-10 w-full  rounded-xl shadow-xl  hover:shadow-2xl bg-gradient-to-r from-blue-400 to-blue-400 '>
 {cities.map((city: any) => (
   <div className='flex  gap-8 justify-between '>
         <div key={city.name} className='p-5 flex gap-5 justify-center items-center'>
