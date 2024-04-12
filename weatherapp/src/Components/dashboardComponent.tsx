@@ -72,10 +72,10 @@ function Form() {
 
   return (
     
-<div className='flex flex-col text-white m-10 w-full  rounded-xl shadow-xl  hover:shadow-2xl bg-gradient-to-r from-blue-400 to-blue-400 '>
+<div className='flex flex-col text-white  px-4 w-full  rounded-xl shadow-xl  hover:shadow-2xl bg-gradient-to-r from-blue-400 to-blue-400 '>
 {cities.map((city: any) => (
-  <div className='flex  gap-8 justify-between '>
-        <div key={city.name} className='p-5 flex gap-5 justify-center items-center'>
+  <div className='flex  justify-between '>
+        <div key={city.name} className=' flex gap-5 justify-center items-center'>
         <div><img src={city?.iconUrl} /></div>
           <div>{city.name}</div>
 

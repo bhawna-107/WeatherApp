@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCity, removeCity } from '../Redux/slices/citySlices';
 import DashboardComponent from './dashboardComponent';
 import frontbg from  '../assets/frontimg.jpg';
+import wind from '../assets/wind.png';
+import humidity1 from '../assets/humidity1.png';
+import pressure from '../assets/pressure.png';
 
 function Form() {
 
@@ -67,7 +70,7 @@ function Form() {
 
   return (
     <div>
-  <div className='w-full flex flex-col bg-gradient-to-r from-gray-100 to-gray-100 p-5 h-screen'>
+  <div className='w-full flex flex-col bg-gradient-to-r from-gray-100 to-gray-100 p-5 h-screen overflow-y-hidden'>
     <div className='flex flex-row gap-5 justify-end w-[100%]'>
       <input
         type="text"
@@ -79,6 +82,7 @@ function Form() {
       <button className="bg-blue-500 rounded-full py-2 px-3">search</button>
       <button className="bg-red-500 rounded-full py-2 px-3" onClick={handleAddCity}>Add to Dashboard</button>
     </div>
+    
     <div className='my-4 relative '>
   {weatherData && (
     <div className='flex flex-col w-full absolute top-10  px-8 z-10 text-white'>
@@ -108,9 +112,65 @@ function Form() {
       </div>
     </div>
   )}
-  <img className='w-full h-[28%] rounded-xl relative z-0' src={frontbg} alt="frontbg" />
+  <img className='w-full h-[20%] rounded-xl relative z-0' src={frontbg} alt="frontbg" />
+  
+  <div className='w-full flex  gap-12 my-10 flex-wrap'>
+  <div className='w-[30%] flex'><DashboardComponent /></div>
+    <div className='w-[30%]  py-8  text-black bg-gray-200 text-blue-500 text-xl rounded-xl shadow-xl hover:shadow-2xl'>
+      <div className='flex w-full justify-between px-8'>
+        <div className='p-2 flex items-center gap-4'>
+            <div className='justify-center items-center' >              
+              <img className="w-full h-full" src={humidity1} alt="windimg" />
+            </div>
+           <div className='flex flex-col text-black '>
+            <p>Humidity</p>
+            <p className='text-black'>{weatherData?.main?.humidity}%</p>
+           </div>
+        </div>
+
+        <div className='p-2 flex items-center gap-4'>
+          <div className='justify-center items-center' >              
+            <img className=" w-full h-full " src={pressure} alt="pressure" />
+          </div>
+          <div className='justify-center'>
+              <p>Pressure</p>
+              <p>{weatherData?.main?.pressure}</p>
+          </div>
+          </div>
+        </div>
+
+     <div className='flex w-full justify-between px-8'>
+        <div className='p-2 flex items-center gap-4'>
+          <div className='justify-center items-center' >              
+            <img className=" w-full h-full" src={humidity1} alt="windimg" />
+          </div>
+          <div className='justify-center'>
+            <p>Humidity</p>
+            <p>{weatherData?.main?.humidity}%</p>
+          </div>
+        </div>
+
+        <div className='p-2  flex items-center gap-4 '>
+          <div className='justify-center items-center' >              
+            <img className=" w-full h-full" src={wind} alt="windimg" />
+          </div>
+          <div className='flex  flex-col justify-end'>
+            <p>Speed</p>
+            <p>{weatherData?.wind?.speed}Km/hr</p>
+          </div>
+        </div>
+     </div>
+    
+          </div>
+
+          </div>
+         
+          </div>
+
 </div>
-  </div>
+
+
+
 </div>
   );
 }
