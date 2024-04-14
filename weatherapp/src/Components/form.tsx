@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCity, removeCity } from '../Redux/slices/citySlices';
+import { addCity } from '../Redux/slices/citySlices';
 import DashboardComponent from './dashboardComponent';
-import frontbg from  '../assets/frontimg.jpg';
 import wind from '../assets/wind.png';
 import humidity1 from '../assets/humidity1.png';
 import pressure from '../assets/pressure.png';
@@ -19,7 +18,6 @@ function Form() {
   const [error, setError] = useState<string>('');
 
   const dispatch = useDispatch();
-  const cities = useSelector((state: any) => state.city.cities);
 
   const formattedDate: string = currentDate.toLocaleDateString('en-US',{
     month: 'long',
@@ -41,7 +39,7 @@ function Form() {
         `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=f1ac97e0781dcc6481c178f9c34a758b&units=metric`
       );
       setWeatherData(data);
-      setError('');
+      setError('City Not found');
       console.log(data);
       
       // Dispatch action to add the city to Redux state
@@ -65,14 +63,8 @@ function Form() {
   }
   };
 
-
-  const handleRemoveCity = (cityName: string) => {
-    // Dispatch action to remove the city from Redux state
-    dispatch(removeCity(cityName));
-  };
-
   return (
-  <div className='w-full flex bg-blue-700 p-5  h-[100%] '>
+  <div className='w-full flex bg-blue-700 p-5  bg-cover h-screen h-[100%] '>
     <div className='w-full flex flex-col p-5 '>
     <div className='flex flex-row gap-5 justify-end w-[100%]'>
       <input
@@ -87,7 +79,7 @@ function Form() {
 
   <div className='w-full lg:flex gap-10 my-10'>
   <div className=' relative lg:w-[70%] bg-cover bg-image'>
-  {weatherData && (
+  {weatherData ? (
     <div className='flex flex-col w-full absolute top-2 px-8 z-10 text-white'>
       <div className=' flex flex-col text-xl font-bold w-full'>
         <div className='flex justify-between w-full'>
@@ -114,7 +106,9 @@ function Form() {
         </div>
       </div>
     </div>
-  )}
+  ) : <div>
+  {error && <div className='flex text-white text-2xl justify-center items-center '>City not found</div>}
+</div>}
   {/* <img className='w-full h-[50%] rounded-xl relative z-0 object-cover' src={frontbg} alt="frontbg" /> */}
   </div>
  

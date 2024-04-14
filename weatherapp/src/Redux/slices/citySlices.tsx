@@ -1,4 +1,3 @@
-// In your Redux slice file (e.g., citySlice.ts)
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface City {

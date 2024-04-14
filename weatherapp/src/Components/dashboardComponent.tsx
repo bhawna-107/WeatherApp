@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
 import '../index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCity, removeCity } from '../Redux/slices/citySlices';
-import wind from '../assets/wind.png';
-import  humidity from '../assets/humidity.png';
+import { removeCity } from '../Redux/slices/citySlices';
+
 
 function Form() {
   const dispatch = useDispatch();

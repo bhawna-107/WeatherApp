@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../index.css';
 
@@ -68,7 +68,7 @@ function Forecast({query}) {
     console.log(newDataArray);
 
   return (
-    <div className='w-full flex flex-col p-5 rounded-xl text-white shadow-xl hover:shadow-2xl glass-background'>
+    <div className='w-full flex flex-col p-5 justify-center items-center rounded-xl text-white shadow-xl hover:shadow-2xl glass-background'>
   <p className='text-xl'>5 Days Forecast</p>
   <div className='flex flex-wrap mt-2'>
     {newDataArray.map((data, index) => (
@@ -86,24 +86,6 @@ function Forecast({query}) {
     ))}
   </div>
 </div>
-
-    // <div className='w-full flex flex-col p-5  rounded-xl text-white shadow-xl hover:shadow-2xl glass-background'>
-    //   <p className='text-xl'>5 Days Forecast</p>
-    //     <div className=' flex mt-2'>
-    //         {newDataArray.map((data,index)=> (
-    //             <div key={index} className='sm:flex flex-col flex-wrap  gap-4 m-2 bg-blue-600 shadow-xl hover:shadow-2xl glass-background border border-gray-300 px-6'>
-    //               <div className='sm:flex flex flex-col flex-wrap px-4 py-4 justifuy-center items-center'>
-    //               <p>{data.formattedDate}</p> 
-    //               <img className='w-full' src={data.iconUrl} alt="weatherimage" />
-                  
-    //               <div className='flex gap-1'><p> {data.temp}</p>
-    //               <span>°C</span></div>
-    //               <p>{data.weatherDescription}</p>
-    //               </div>
-    //             </div>
-    //         ))}
-    //     </div>
-    // </div>
   );
 }
 
