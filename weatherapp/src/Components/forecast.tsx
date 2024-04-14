@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../index.css';
 
+interface ForecastProps {
+  query: string;
+}
 
-function Forecast({query}) {
+
+function Forecast({ query }: ForecastProps) {
 
   const [forecastData, setForecastData] = useState<any>(null);
 
