@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../index.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { addCity } from '../Redux/slices/citySlices';
 import DashboardComponent from './dashboardComponent';
 import wind from '../assets/wind.png';
