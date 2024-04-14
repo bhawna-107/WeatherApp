@@ -23,7 +23,7 @@ Vite: A fast, opinionated web development build tool that serves your code via n
 
 ## Getting Started:
 
-Clone the repository: git clone https://github.com/your-username/weather-app.git
+**Clone the repository: git clone https://github.com/your-username/weather-app.git**
 Navigate to the project directory: cd weatherapp
 Install dependencies: npm install
 Create an account on OpenWeather and obtain API keys for the current weather and forecast APIs.
