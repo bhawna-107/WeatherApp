@@ -8,6 +8,8 @@ import frontbg from  '../assets/frontimg.jpg';
 import wind from '../assets/wind.png';
 import humidity1 from '../assets/humidity1.png';
 import pressure from '../assets/pressure.png';
+import Forecast from './forecast';
+import visibility from '../assets/visibility.png';
 
 function Form() {
 
@@ -54,6 +56,7 @@ function Form() {
 
   }, [query]);
 
+
   const handleAddCity = () => {
     if(query)
     // Dispatch action to add the city to Redux state
@@ -69,67 +72,67 @@ function Form() {
   };
 
   return (
-    <div>
-  <div className='w-full flex flex-col bg-gradient-to-r from-gray-100 to-gray-100 p-5 h-screen overflow-y-hidden'>
+  <div className='w-full flex bg-blue-700 p-5  h-[100%] '>
+    <div className='w-full flex flex-col p-5 '>
     <div className='flex flex-row gap-5 justify-end w-[100%]'>
       <input
         type="text"
         placeholder="Enter city name"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className='w-[30%] p-2 rounded-xl border border-gray-900 h-30px'
+        className='md:w-[30%] p-2 rounded-xl border border-gray-900 h-30px'
       />
-      <button className="bg-blue-500 rounded-full py-2 px-3">search</button>
-      <button className="bg-red-500 rounded-full py-2 px-3" onClick={handleAddCity}>Add to Dashboard</button>
+      <button className="bg-blue-100 text-blue-500 rounded-full py-2 px-3" onClick={handleAddCity}>Add to Dashboard</button>
     </div>
-    
-    <div className='my-4 relative '>
+
+  <div className='w-full lg:flex gap-10 my-10'>
+  <div className=' relative lg:w-[70%] bg-cover bg-image'>
   {weatherData && (
-    <div className='flex flex-col w-full absolute top-10  px-8 z-10 text-white'>
+    <div className='flex flex-col w-full absolute top-2 px-8 z-10 text-white'>
       <div className=' flex flex-col text-xl font-bold w-full'>
         <div className='flex justify-between w-full'>
-          <p>{weatherData.name}</p>
-          <p>{formattedTime}</p>
+          <p>{weatherData?.name ? weatherData?.name : "N/A"}</p>
+          <p>{formattedTime ? formattedTime : "N/A"}</p>
         </div>
-        <div>{formattedDate}</div>
+        <div>{formattedDate ? formattedDate :"N/A"}</div>
       </div>
       <div className='flex w-[90%] justify-between '>
         <div className='flex w-full h-[100%]'>
           <img
             src={`https://openweathermap.org/img/wn/${weatherData.weather[0]?.icon}.png`}
             alt="Weather Icon"
-            className='w-[15%] h-[50%] '
+            className='sm:w-[35%] w-full h-full sm:h-[50%] '
           />
         </div>
         <div className='flex flex-col text-white'>
-          <div className='flex'>
-            <div className='text-7xl'>{weatherData.main.temp}</div>
+          <div className='flex justify-center '>
+            <div className='sm:text-7xl text-4xl'>{weatherData.main.temp ? weatherData.main.temp : "N/A"}</div>
             <span className='text-xl font-bold'>°C</span>
           </div>
-          <div className='text-xl font-bold pt-3'>{weatherData?.weather[0]?.description}</div>
-          <p className='text-xl'>Feels like {weatherData?.main?.feels_like}</p>
+          <div className='text-xl font-bold pt-3'>{weatherData?.weather[0]?.description ? weatherData?.weather[0]?.description : "N/A" }</div>
+          <p className='text-xl'>Feels like {weatherData?.main?.feels_like ? weatherData?.main?.feels_like : "N/A"}</p>
         </div>
       </div>
     </div>
   )}
-  <img className='w-full h-[20%] rounded-xl relative z-0' src={frontbg} alt="frontbg" />
-  
-  <div className='w-full flex  gap-12 my-10 flex-wrap'>
-  <div className='w-[30%] flex'><DashboardComponent /></div>
-    <div className='w-[30%]  py-8  text-black bg-gray-200 text-blue-500 text-xl rounded-xl shadow-xl hover:shadow-2xl'>
+  {/* <img className='w-full h-[50%] rounded-xl relative z-0 object-cover' src={frontbg} alt="frontbg" /> */}
+  </div>
+ 
+  <div className='flex lg:w-1/2 w-full h-[100%] lg:mt-0 mt-7'>
+    <div className='w-full  py-8  text-white glass-background text-blue-500 text-xl rounded-xl shadow-xl hover:shadow-2xl'>
       <div className='flex w-full justify-between px-8'>
         <div className='p-2 flex items-center gap-4'>
-            <div className='justify-center items-center' >              
+            <div className='justify-center items-center w-[30%]' >              
               <img className="w-full h-full" src={humidity1} alt="windimg" />
             </div>
-           <div className='flex flex-col text-black '>
+           <div className='flex flex-col'>
             <p>Humidity</p>
-            <p className='text-black'>{weatherData?.main?.humidity}%</p>
+            <p className=''>{weatherData?.main?.humidity}%</p>
            </div>
         </div>
 
         <div className='p-2 flex items-center gap-4'>
-          <div className='justify-center items-center' >              
+          <div className='justify-center items-center w-[30%]' >              
             <img className=" w-full h-full " src={pressure} alt="pressure" />
           </div>
           <div className='justify-center'>
@@ -141,8 +144,8 @@ function Form() {
 
      <div className='flex w-full justify-between px-8'>
         <div className='p-2 flex items-center gap-4'>
-          <div className='justify-center items-center' >              
-            <img className=" w-full h-full" src={humidity1} alt="windimg" />
+          <div className='justify-center items-center w-[30%]' >              
+            <img className=" w-full h-full" src={visibility} alt="windimg" />
           </div>
           <div className='justify-center'>
             <p>Humidity</p>
@@ -151,7 +154,7 @@ function Form() {
         </div>
 
         <div className='p-2  flex items-center gap-4 '>
-          <div className='justify-center items-center' >              
+          <div className='justify-center items-center w-[30%]' >              
             <img className=" w-full h-full" src={wind} alt="windimg" />
           </div>
           <div className='flex  flex-col justify-end'>
@@ -160,18 +163,16 @@ function Form() {
           </div>
         </div>
      </div>
-    
+     </div>
+  </div>
+    </div>
+    <div className='w-full flex  gap-14  flex-wrap'>
+  <div  className='xl:w-[26%] w-full lg:mt-0 mt-64 flex'><DashboardComponent /></div>
+  <div className='xl:w-[70%]  w-full flex'><Forecast query= {query} /></div> 
+  </div>
+  </div>
+  
           </div>
-
-          </div>
-         
-          </div>
-
-</div>
-
-
-
-</div>
   );
 }
 

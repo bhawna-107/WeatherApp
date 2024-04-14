@@ -22,7 +22,7 @@ const citySlice = createSlice({
     addCity(state, action: PayloadAction<City>) {
       const existingCity = state.cities.find(city => city.name === action.payload.name);
       if (!existingCity) {
-        if (state.cities.length >= 5) {
+        if (state.cities.length >= 4) {
           state.cities.pop(); // Remove the oldest search if there are already 5 searches
         }
         state.cities.unshift(action.payload); // Add the new search to the beginning
