@@ -64,8 +64,8 @@ function Form() {
   };
 
   return (
-  <div className='w-full flex bg-blue-700 p-5 bg-cover h-[100%] '>
-    <div className='w-full flex flex-col p-5  '>
+  <div className='w-full flex bg-blue-700 p-5 bg-cover xl:h-full '>
+    <div className='w-full flex flex-col p-5 xl:h-screen '>
     <div className='flex flex-row gap-5 justify-end w-[100%]'>
       <input
         type="text"
