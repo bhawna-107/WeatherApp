@@ -78,13 +78,13 @@ function Forecast({ query }: ForecastProps) {
     {newDataArray.map((data, index) => (
       <div key={index} className='sm:flex sm:flex-col flex flex-col flex-wrap gap-4 m-2 bg-blue-600 shadow-xl hover:shadow-2xl glass-background border border-gray-300 px-6'>
         <div className='sm:flex flex flex-col flex-wrap px-3 py-4 justify-center items-center'>
-          <p>{data.formattedDate}</p> 
-          <img className='w-full' src={data.iconUrl} alt="weatherimage" />
+          <p>{data.formattedDate ? data.formattedDate : "date"}</p> 
+          <img className='w-full' src={data.iconUrl ? data.iconUrl : "image"} alt="weatherimage" />
           <div className='flex gap-1'>
-            <p>{data.temp}</p>
+            <p>{data.temp ? data.temp : "temp"}</p>
             <span>°C</span>
           </div>
-          <p>{data.weatherDescription}</p>
+          <p>{data.weatherDescription ? data.weatherDescription : "description"}</p>
         </div>
       </div>
     ))}

@@ -64,15 +64,15 @@ function Form() {
   };
 
   return (
-  <div className='w-full flex bg-blue-700 p-5  bg-cover h-full '>
-    <div className='w-full flex flex-col p-5 '>
+  <div className='w-full flex bg-blue-700 p-5 bg-cover h-[100%] '>
+    <div className='w-full flex flex-col p-5  '>
     <div className='flex flex-row gap-5 justify-end w-[100%]'>
       <input
         type="text"
         placeholder="Enter city name"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className='md:w-[30%] p-2 rounded-xl border border-gray-900 h-30px'
+        className='md:w-[28.5%] p-2 rounded-xl border border-gray-900 h-30px'
       />
       <button className="bg-blue-100 text-blue-500 rounded-full py-2 px-3" onClick={handleAddCity}>Add to Dashboard</button>
     </div>
@@ -97,11 +97,11 @@ function Form() {
           />
         </div>
         <div className='flex flex-col text-white'>
-          <div className='flex justify-center '>
+          <div className='flex justify-center w-full '>
             <div className='sm:text-7xl text-4xl'>{weatherData.main.temp ? weatherData.main.temp : "N/A"}</div>
             <span className='text-xl font-bold'>°C</span>
           </div>
-          <div className='text-xl font-bold pt-3'>{weatherData?.weather[0]?.description ? weatherData?.weather[0]?.description : "N/A" }</div>
+          <div className='text-xl font-bold pt-3 w-full'>{weatherData?.weather[0]?.description ? weatherData?.weather[0]?.description : "N/A" }</div>
           <p className='text-xl'>Feels like {weatherData?.main?.feels_like ? weatherData?.main?.feels_like : "N/A"}</p>
         </div>
       </div>
@@ -115,8 +115,8 @@ function Form() {
   <div className='flex lg:w-1/2 w-full h-[100%] lg:mt-0 mt-7'>
     <div className='w-full  py-8  text-white glass-background text-blue-500 text-xl rounded-xl shadow-xl hover:shadow-2xl'>
       <div className='flex w-full justify-between px-8'>
-        <div className='p-2 flex items-center gap-4'>
-            <div className='justify-center items-center w-[30%]' >              
+        <div className='p-2 flex items-center gap-4 w-full'>
+            <div className='justify-center items-center w-[15%]' >              
               <img className="w-full h-full" src={humidity1} alt="windimg" />
             </div>
            <div className='flex flex-col'>
@@ -125,8 +125,8 @@ function Form() {
            </div>
         </div>
 
-        <div className='p-2 flex items-center gap-4'>
-          <div className='justify-center items-center w-[30%]' >              
+        <div className='p-2 flex items-center gap-4 w-full'>
+          <div className='justify-center items-center w-[15%]' >              
             <img className=" w-full h-full " src={pressure} alt="pressure" />
           </div>
           <div className='justify-center'>
@@ -137,18 +137,18 @@ function Form() {
         </div>
 
      <div className='flex w-full justify-between px-8'>
-        <div className='p-2 flex items-center gap-4'>
-          <div className='justify-center items-center w-[30%]' >              
+        <div className='p-2 flex items-center gap-4  w-full'>
+          <div className='justify-center items-center w-[15%]' >              
             <img className=" w-full h-full" src={visibility} alt="windimg" />
           </div>
           <div className='justify-center'>
-            <p>Humidity</p>
-            <p>{weatherData?.main?.humidity}%</p>
+            <p>Visibility</p>
+            <p>{weatherData?.visibility}</p>
           </div>
         </div>
 
-        <div className='p-2  flex items-center gap-4 '>
-          <div className='justify-center items-center w-[30%]' >              
+        <div className='p-2  flex items-center gap-4 w-full'>
+          <div className='justify-center items-center w-[15%]' >              
             <img className=" w-full h-full" src={wind} alt="windimg" />
           </div>
           <div className='flex  flex-col justify-end'>
@@ -160,7 +160,7 @@ function Form() {
      </div>
   </div>
     </div>
-    <div className='w-full flex  gap-14  flex-wrap'>
+    <div className='w-full flex  xl:gap-14 gap-8  flex-wrap'>
   <div  className='xl:w-[26%] w-full lg:mt-0 mt-64 flex'><DashboardComponent /></div>
   <div className='xl:w-[70%]  w-full flex'><Forecast query= {query} /></div> 
   </div>
