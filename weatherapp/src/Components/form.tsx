@@ -83,7 +83,7 @@ function Form() {
     <div className='flex flex-col w-full absolute top-2 px-8 z-10 text-white'>
       <div className=' flex flex-col text-xl font-bold w-full'>
         <div className='flex justify-between w-full'>
-          <p>{weatherData?.name ? weatherData?.name : "N/A"}</p>
+          <p>{weatherData?.name ? weatherData?.name : <p>"N/A"</p>}</p>
           <p>{formattedTime ? formattedTime : "N/A"}</p>
         </div>
         <div>{formattedDate ? formattedDate :"N/A"}</div>
@@ -98,7 +98,7 @@ function Form() {
         </div>
         <div className='flex flex-col text-white'>
           <div className='flex justify-center w-full '>
-            <div className='sm:text-7xl text-4xl'>{weatherData.main.temp ? weatherData.main.temp : "N/A"}</div>
+            <div className='sm:text-7xl text-4xl'>{weatherData.main.temp ? weatherData.main.temp : <p>N/A</p>}</div>
             <span className='text-xl font-bold'>°C</span>
           </div>
           <div className='text-xl font-bold pt-3 w-full'>{weatherData?.weather[0]?.description ? weatherData?.weather[0]?.description : "N/A" }</div>
@@ -121,7 +121,7 @@ function Form() {
             </div>
            <div className='flex flex-col'>
             <p>Humidity</p>
-            <p className=''>{weatherData?.main?.humidity}%</p>
+            <p className=''>{weatherData?.main?.humidity ? weatherData?.main?.humidity : <p>N/A</p>}%</p>
            </div>
         </div>
 
@@ -131,7 +131,7 @@ function Form() {
           </div>
           <div className='justify-center'>
               <p>Pressure</p>
-              <p>{weatherData?.main?.pressure}</p>
+              <p>{weatherData?.main?.pressure ?weatherData?.main?.pressure: <p>N/A</p> }</p>
           </div>
           </div>
         </div>
@@ -143,7 +143,7 @@ function Form() {
           </div>
           <div className='justify-center'>
             <p>Visibility</p>
-            <p>{weatherData?.visibility}</p>
+            <p>{weatherData?.visibility ? weatherData?.visibility : <p>N/A</p> }</p>
           </div>
         </div>
 
@@ -153,7 +153,7 @@ function Form() {
           </div>
           <div className='flex  flex-col justify-end'>
             <p>Speed</p>
-            <p>{weatherData?.wind?.speed}Km/hr</p>
+            <p>{weatherData?.wind?.speed ? weatherData?.wind?.speed : <p>N/A</p> }Km/hr</p>
           </div>
         </div>
      </div>
